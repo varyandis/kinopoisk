@@ -1,0 +1,7 @@
+export { MainPage } from './MainPage/MainPage'
+export { SearchPage } from './SearchPage/SearchPage'
+export { FilterPage } from './FilterPage/FilterPage'
+export { NotFoundPage } from './NotFoundPage/NotFoundPage'
+export { CategoryPage } from './CategoryPage/CategoryPage'
+export { FavoritesPage } from './FavoritesPage/FavoritesPage'
+export { MovieDetailsPage } from './MovieDetailsPage/MovieDetailsPage'
