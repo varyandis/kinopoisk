@@ -1,11 +1,67 @@
+import { ROUTES } from '@/app/App'
+import type { ThemeMode } from '@/app/theme'
+import tmdbLogo from '@/shared/assets/images/tmdb-logo.svg'
+import { MoonOutlined, SunOutlined } from '@ant-design/icons'
+import { Button, Layout, Menu, type MenuProps } from 'antd'
+import { NavLink, useLocation, useNavigate } from 'react-router'
+import s from './LayoutHeader.module.css'
+
+type MenuClick = MenuProps['onClick']
+
+const items: MenuProps['items'] = [
+  { label: 'Main', key: '/' },
+  { label: 'Category movies', key: '/categories/popular' },
+  { label: 'Filtered movies', key: '/filtered' },
+  { label: 'Search', key: '/search' },
+  { label: 'Favorites', key: '/favorites' },
+]
+
 type Props = {
-  
+  setThemeMode: (theme: ThemeMode) => void
+  theme: ThemeMode
 }
 
-export const LayoutHeader = (props: Props) => {
+export const LayoutHeader = ({ setThemeMode, theme }: Props) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const onClick: MenuClick = (e) => {
+    navigate(e.key)
+  }
+
+  const nextTheme = theme === 'light' ? 'dark' : 'light'
+
   return (
-    <>
-      LayoutHeader component
-    </>
+    <Layout.Header className={s.header}>
+      <div className={s.container}>
+        <div className={s.left}>
+          <NavLink to={ROUTES.MAIN} end>
+            <img className={s.logo} src={tmdbLogo} alt="TMDB" />
+          </NavLink>
+        </div>
+        <div className={s.center}>
+          <Menu
+            theme={theme}
+            mode="horizontal"
+            className={s.menu}
+            disabledOverflow
+            items={items}
+            onClick={onClick}
+            selectedKeys={[location.pathname]}
+          ></Menu>
+        </div>
+        <div className={s.right}>
+          {
+            <Button
+              shape='circle'
+              type="default"
+              icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
+              size="middle"
+              onClick={() => setThemeMode(nextTheme)}
+            />
+          }
+        </div>
+      </div>
+    </Layout.Header>
   )
 }
