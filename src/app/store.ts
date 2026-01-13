@@ -1,8 +1,13 @@
+import { tmdbApi } from '@/shared/api/tmdb/tmdbApi'
 import { configureStore } from '@reduxjs/toolkit'
 // ...
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [tmdbApi.reducerPath]: tmdbApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(tmdbApi.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
