@@ -1,0 +1,33 @@
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+}
+
+.poster :global(.ant-skeleton-image) {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  margin: 0;   
+}
+
+.meta {
+  padding: 12px;
+  min-height: calc(1.3em * 2); /* как у title */
+  display: flex;
+  align-items: center;
+}
+
+.meta :global(.ant-skeleton) {
+  width: 100%;
+}
+
+.meta :global(.ant-skeleton-paragraph) {
+  margin: 0;
+}
