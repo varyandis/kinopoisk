@@ -12,9 +12,7 @@ import { Navigate, Route, Routes } from 'react-router'
 
 export enum ROUTES {
   MAIN = '/',
-  CATEGORIES = '/categories',
   CATEGORY = '/categories/:category',
-  DEFAULT_CATEGORY = '/categories/popular',
   FILTERED = '/filtered',
   SEARCH = '/search',
   FAVORITES = '/favorites',
@@ -28,10 +26,6 @@ export const App = () => {
     <Routes>
       <Route path={ROUTES.MAIN} element={<LayoutMain />}>
         <Route index element={<MainPage />} />
-        <Route
-          path={ROUTES.CATEGORIES}
-          element={<Navigate to={ROUTES.DEFAULT_CATEGORY} replace />}
-        />
         <Route path={ROUTES.CATEGORY} element={<CategoryPage />} />
         <Route path={ROUTES.FILTERED} element={<FilterPage />} />
         <Route path={ROUTES.SEARCH} element={<SearchPage />} />
