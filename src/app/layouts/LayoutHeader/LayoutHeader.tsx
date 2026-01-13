@@ -25,6 +25,10 @@ export const LayoutHeader = ({ setThemeMode, theme }: Props) => {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const pathname = location.pathname
+
+  const selectedKey = pathname.startsWith('/categories/') ? '/categories/popular' : pathname
+
   const onClick: MenuClick = (e) => {
     navigate(e.key)
   }
@@ -47,13 +51,13 @@ export const LayoutHeader = ({ setThemeMode, theme }: Props) => {
             disabledOverflow
             items={items}
             onClick={onClick}
-            selectedKeys={[location.pathname]}
+            selectedKeys={[selectedKey]}
           ></Menu>
         </div>
         <div className={s.right}>
           {
             <Button
-              shape='circle'
+              shape="circle"
               type="default"
               icon={theme === 'light' ? <MoonOutlined /> : <SunOutlined />}
               size="middle"
