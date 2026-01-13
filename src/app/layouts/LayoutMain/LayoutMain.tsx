@@ -59,6 +59,10 @@ export const LayoutMain = () => {
         Menu: {
           horizontalItemBorderRadius: 14,
         },
+        Card: {
+          fontSizeLG: 14,
+          paddingLG: 14,
+        },
       },
     }
   }, [theme])
