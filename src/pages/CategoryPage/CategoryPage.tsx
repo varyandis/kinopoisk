@@ -13,6 +13,8 @@ import s from './CategoryPage.module.css'
 
 export const CategoryPage = () => {
   const [page, setPage] = useState(1)
+  const MAX_RESULTS = 1000
+  const PAGES_SIZE = 20
 
   const category = useParams<{ category: RouteMovieCategories }>().category ?? 'popular'
 
@@ -39,10 +41,12 @@ export const CategoryPage = () => {
       <Pagination
         showQuickJumper
         current={page}
-        total={data?.total_pages}
+        total={MAX_RESULTS}
+        pageSize={PAGES_SIZE}
         onChange={paginationChange}
         align="center"
         className={s.pagination}
+        showSizeChanger={false}
       />
     </>
   )
