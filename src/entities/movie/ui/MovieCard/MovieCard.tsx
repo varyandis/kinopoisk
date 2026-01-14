@@ -7,8 +7,8 @@ import s from './MovieCard.module.css'
 
 type Props = {
   movie: Movie
-  isFavorite?: boolean
-  onToggleFavorite: (movieId: number) => void
+  isFavorite: boolean
+  onToggleFavorite: (movie: Movie) => void
 }
 const { Meta } = Card
 
@@ -16,7 +16,7 @@ export const MovieCard = ({ movie, isFavorite, onToggleFavorite }: Props) => {
   const onToggleFavoriteHandler = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    onToggleFavorite(movie.id)
+    onToggleFavorite(movie)
   }
 
   const colorVote =

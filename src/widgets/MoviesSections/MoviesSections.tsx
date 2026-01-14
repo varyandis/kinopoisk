@@ -1,9 +1,12 @@
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { MovieCard } from '@/entities/movie/ui/MovieCard'
+import { MovieCardSkeleton } from '@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton'
+import { favoriteActions, type FavoriteMovie } from '@/features/favorites/model'
 import { useGetMoviesQuery, type MovieCategoryType } from '@/shared/api/tmdb/tmdbApi'
 import { Button } from 'antd'
-import s from './MoviesSections.module.css'
-import { MovieCardSkeleton } from '@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton'
 import { Link } from 'react-router'
+import s from './MoviesSections.module.css'
+import type { Movie } from '@/entities/movie'
 
 const COUNT_MOVIES = 6
 
@@ -15,9 +18,18 @@ type Props = {
 
 export const MoviesSections = ({ category, title, buttonLabel }: Props) => {
   const { data, isLoading, error } = useGetMoviesQuery({ category: category, page: 1 })
+  const dispatch = useAppDispatch()
+  const favorites = useAppSelector((state) => state.favorites.items)
 
-  const onToggleFavorite = (movieId: number) => {
-    // Implement favorite toggle logic here
+  const onToggleFavorite = (movie: Movie) => {
+    const favoriteMovie: FavoriteMovie = {
+      id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path,
+      vote_average: movie.vote_average,
+    }
+
+    dispatch(favoriteActions.toggleFavoriteMovie(favoriteMovie))
   }
 
   if (error) {
@@ -53,7 +65,7 @@ export const MoviesSections = ({ category, title, buttonLabel }: Props) => {
           <MovieCard
             key={movie.id}
             movie={movie}
-            isFavorite={false}
+            isFavorite={favorites.some((fav) => fav.id === movie.id)}
             onToggleFavorite={onToggleFavorite}
           />
         ))}
