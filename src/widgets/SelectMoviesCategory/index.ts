@@ -1,0 +1,1 @@
+export { SelectMoviesCategory } from './SelectMoviesCategory'

@@ -1,12 +1,13 @@
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import type { Movie } from '@/entities/movie'
 import { MovieCard } from '@/entities/movie/ui/MovieCard'
 import { MovieCardSkeleton } from '@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton'
 import { favoriteActions, type FavoriteMovie } from '@/features/favorites/model'
 import { useGetMoviesQuery, type MovieCategoryType } from '@/shared/api/tmdb/tmdbApi'
+import { API_TO_ROUTE_MOVIE_CATEGORIES } from '@/shared/config/routes/movieCategories'
 import { Button } from 'antd'
 import { Link } from 'react-router'
 import s from './MoviesSections.module.css'
-import type { Movie } from '@/entities/movie'
 
 const COUNT_MOVIES = 6
 
@@ -56,7 +57,7 @@ export const MoviesSections = ({ category, title, buttonLabel }: Props) => {
     <div>
       <div className={s.description}>
         <span className={s.categoryTitle}>{title}</span>
-        <Link to={`/categories/${category}`}>
+        <Link to={`/categories/${API_TO_ROUTE_MOVIE_CATEGORIES[category]}`}>
           <Button type="default">{buttonLabel}</Button>
         </Link>
       </div>
