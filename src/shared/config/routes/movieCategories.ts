@@ -17,8 +17,8 @@ export const API_TO_ROUTE_MOVIE_CATEGORIES: Record<MovieCategoryType, RouteMovie
 }
 
 export const MOVIE_CATEGORIES_TITLES: Array<{ key: RouteMovieCategories; title: string }> = [
-  { key: 'popular', title: 'Popular' },
-  { key: 'top-rated', title: 'Top Rated' },
-  { key: 'upcoming', title: 'Upcoming' },
-  { key: 'now-playing', title: 'Now Playing' },
+  { key: 'popular', title: 'Popular Movies' },
+  { key: 'top-rated', title: 'Top Rated Movies' },
+  { key: 'upcoming', title: 'Upcoming Movies' },
+  { key: 'now-playing', title: 'Now Playing Movies' },
 ]

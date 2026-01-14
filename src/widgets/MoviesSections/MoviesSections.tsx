@@ -1,8 +1,6 @@
-import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import type { Movie } from '@/entities/movie'
 import { MovieCard } from '@/entities/movie/ui/MovieCard'
 import { MovieCardSkeleton } from '@/entities/movie/ui/MovieCardSkeleton/MovieCardSkeleton'
-import { favoriteActions, type FavoriteMovie } from '@/features/favorites/model'
+import { useFavorites } from '@/features/favorites'
 import { useGetMoviesQuery, type MovieCategoryType } from '@/shared/api/tmdb/tmdbApi'
 import { API_TO_ROUTE_MOVIE_CATEGORIES } from '@/shared/config/routes/movieCategories'
 import { Button } from 'antd'
@@ -19,19 +17,8 @@ type Props = {
 
 export const MoviesSections = ({ category, title, buttonLabel }: Props) => {
   const { data, isLoading, error } = useGetMoviesQuery({ category: category, page: 1 })
-  const dispatch = useAppDispatch()
-  const favorites = useAppSelector((state) => state.favorites.items)
 
-  const onToggleFavorite = (movie: Movie) => {
-    const favoriteMovie: FavoriteMovie = {
-      id: movie.id,
-      title: movie.title,
-      poster_path: movie.poster_path,
-      vote_average: movie.vote_average,
-    }
-
-    dispatch(favoriteActions.toggleFavoriteMovie(favoriteMovie))
-  }
+  const { isFavorite, onToggleFavorite } = useFavorites()
 
   if (error) {
     return <div>Error loading movies.</div>
@@ -66,7 +53,7 @@ export const MoviesSections = ({ category, title, buttonLabel }: Props) => {
           <MovieCard
             key={movie.id}
             movie={movie}
-            isFavorite={favorites.some((fav) => fav.id === movie.id)}
+            isFavorite={isFavorite(movie.id)}
             onToggleFavorite={onToggleFavorite}
           />
         ))}
