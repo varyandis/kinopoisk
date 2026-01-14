@@ -1,11 +1,13 @@
 import { MoviesSections } from '@/widgets/MoviesSections/MoviesSections'
+import s from './MainPage.module.css'
 
-type Props = {}
-
-export const MainPage = (props: Props) => {
+export const MainPage = () => {
   return (
-    <>
-      <MoviesSections />
-    </>
+    <div className={s.section}>
+      <MoviesSections category="popular" title="Popular Movies" buttonLabel="See All" />
+      <MoviesSections category="top_rated" title="Top Rated Movies" buttonLabel="See All" />
+      <MoviesSections category="upcoming" title="Upcoming Movies" buttonLabel="See All" />
+      <MoviesSections category="now_playing" title="Now Playing Movies" buttonLabel="See All" />
+    </div>
   )
 }

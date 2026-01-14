@@ -49,7 +49,10 @@ export const getAntdTheme = (mode: ThemeMode): ThemeConfig => {
         : {
             fontSizeLG: 14,
             paddingLG: 14,
-          },
+        },
+      Tag: {
+        colorBorder: isDark ? '#00000000' : '#ffffff'
+      }
     },
   }
 }
