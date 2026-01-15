@@ -1,0 +1,45 @@
+.cast {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cast h3 {
+  margin: 0;
+}
+
+.actors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  justify-items: center;
+  gap: 10px;
+}
+
+.actorItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  width: 150px;
+  text-align: center;
+}
+
+.actorItem img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.actorName {
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.actorCharacter {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.8;
+}

@@ -1,4 +1,4 @@
-import type { MoviesResponse } from '@/shared/api/tmdb/types'
+import type { MovieCastType, MovieDetailsResponse, MoviesResponse } from '@/shared/api/tmdb/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export type MovieCategoryType = 'popular' | 'top_rated' | 'upcoming' | 'now_playing'
@@ -22,7 +22,36 @@ export const tmdbApi = createApi({
         },
       }),
     }),
+    getMovieById: build.query<MovieDetailsResponse, number>({
+      query: (movieId: number) => ({
+        url: `movie/${movieId}`,
+        params: {
+          language: 'en-US',
+        },
+      }),
+    }),
+    getMovieCredits: build.query<{ cast: MovieCastType[] }, number>({
+      query: (movieId: number) => ({
+        url: `movie/${movieId}/credits`,
+        params: {
+          language: 'en-US',
+        },
+      }),
+    }),
+    getSimilarMovies: build.query<MoviesResponse, number>({
+      query: (movieId: number) => ({
+        url: `movie/${movieId}/similar`,
+        params: {
+          language: 'en-US',
+        },
+      }),
+    }),
   }),
 })
 
-export const { useGetMoviesQuery } = tmdbApi
+export const {
+  useGetMoviesQuery,
+  useGetMovieByIdQuery,
+  useGetMovieCreditsQuery,
+  useGetSimilarMoviesQuery,
+} = tmdbApi

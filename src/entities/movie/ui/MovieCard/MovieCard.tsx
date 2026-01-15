@@ -1,4 +1,5 @@
 import type { Movie } from '@/entities/movie'
+import { getVoteColor } from '@/shared/lib/tmdb/getVoteColor'
 import { getTmdbImageUrl } from '@/shared/lib/tmdb/image'
 import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { Button, Card, Tag } from 'antd'
@@ -19,8 +20,7 @@ export const MovieCard = ({ movie, isFavorite, onToggleFavorite }: Props) => {
     onToggleFavorite(movie)
   }
 
-  const colorVote =
-    movie.vote_average >= 7 ? '#4caf50' : movie.vote_average >= 4 ? '#ff9800' : '#f44336'
+  const colorVote = getVoteColor(movie.vote_average)
 
   return (
     <Link to={`/movies/${movie.id}`} className={s.link}>

@@ -1,0 +1,23 @@
+.movies {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.categoryTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
