@@ -46,6 +46,16 @@ export const tmdbApi = createApi({
         },
       }),
     }),
+    searchMovies: build.query<MoviesResponse, { query: string; page?: number }>({
+      query: ({ query, page = 1 }) => ({
+        url: 'search/movie',
+        params: {
+          language: 'en-US',
+          query: query,
+          page: page,
+        },
+      }),
+    }),
   }),
 })
 
@@ -54,4 +64,5 @@ export const {
   useGetMovieByIdQuery,
   useGetMovieCreditsQuery,
   useGetSimilarMoviesQuery,
+  useSearchMoviesQuery,
 } = tmdbApi
