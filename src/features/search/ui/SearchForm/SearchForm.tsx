@@ -24,7 +24,7 @@ export const SearchForm = ({ handleSubmit, inputValue, setInputValue, onClear }:
         allowClear
         className={s.input}
       />
-      <Button disabled={!inputValue.trim()} htmlType="submit">
+      <Button disabled={!inputValue.trim()} htmlType="submit" variant='solid'>
         Search
       </Button>
     </form>

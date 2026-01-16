@@ -3,4 +3,5 @@ export type Movie = {
   title: string
   poster_path: string | null
   vote_average: number
+  backdrop_path: string | null
 }

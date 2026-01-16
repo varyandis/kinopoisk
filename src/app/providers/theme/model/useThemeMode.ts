@@ -1,5 +1,5 @@
+import type { ThemeMode } from '@/app/providers/theme/types/types'
 import { useEffect, useState } from 'react'
-import type { ThemeMode } from '@/app/theme'
 
 const STORAGE_THEME_KEY = 'themeMode'
 

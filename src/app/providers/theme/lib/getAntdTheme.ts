@@ -1,5 +1,5 @@
+import type { ThemeMode } from '@/app/providers/theme/types/types'
 import { theme as antdTheme, type ThemeConfig } from 'antd'
-import type { ThemeMode } from '@/app/theme'
 
 const { defaultAlgorithm, darkAlgorithm } = antdTheme
 
@@ -49,10 +49,13 @@ export const getAntdTheme = (mode: ThemeMode): ThemeConfig => {
         : {
             fontSizeLG: 14,
             paddingLG: 14,
-        },
+          },
       Tag: {
-        colorBorder: isDark ? '#00000000' : '#ffffff'
-      }
+        colorBorder: isDark ? '#00000000' : '#ffffff',
+      },
+      Button: {
+        colorBgContainerDisabled: isDark ? 'rgb(21, 23, 51)' : '#FFFFFF',
+      },
     },
   }
 }

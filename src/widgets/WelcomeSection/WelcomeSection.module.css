@@ -1,0 +1,28 @@
+.welcome {
+  position: relative;
+  height: 800px;
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+.overlay {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 48px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container :global(.ant-btn:disabled),
+.container :global(.ant-btn[disabled]) {
+  opacity: 1 !important;
+}
+
