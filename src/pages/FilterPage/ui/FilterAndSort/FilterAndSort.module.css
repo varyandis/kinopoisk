@@ -1,0 +1,88 @@
+.container {
+  flex: 0 0 320px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sort {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.select {
+  width: 100%;
+}
+
+.genres {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.genresList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.genreBtn {
+  border-radius: 999px;
+  padding: 6px 14px;
+  height: auto;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.sliderValues {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.valueText {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.sliderControl {
+  width: calc(100% - 24px);
+  margin: 0 auto;
+}
+
+.resetBtn {
+  margin-top: 8px;
+  font-weight: 400;
+}

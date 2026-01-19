@@ -1,4 +1,10 @@
-import type { MovieCastType, MovieDetailsResponse, MoviesResponse } from '@/shared/api/tmdb/types'
+import {
+  type DiscoverMoviesArgs,
+  type MovieCastType,
+  type MovieDetailsResponse,
+  type MovieGenres,
+  type MoviesResponse,
+} from '@/shared/api/tmdb/types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export type MovieCategoryType = 'popular' | 'top_rated' | 'upcoming' | 'now_playing'
@@ -56,6 +62,27 @@ export const tmdbApi = createApi({
         },
       }),
     }),
+    getMovieGenres: build.query<{ genres: MovieGenres[] }, void>({
+      query: () => ({
+        url: 'genre/movie/list',
+        params: {
+          language: 'en-US',
+        },
+      }),
+    }),
+    discoverMovies: build.query<MoviesResponse, DiscoverMoviesArgs>({
+      query: ({ page, sort, min, max, with_genres }) => ({
+        url: 'discover/movie',
+        params: {
+          language: 'en-US',
+          page: page,
+          sort_by: sort,
+          'vote_average.gte': min,
+          'vote_average.lte': max,
+          ...(with_genres ? { with_genres } : {}),
+        },
+      }),
+    }),
   }),
 })
 
@@ -65,4 +92,6 @@ export const {
   useGetMovieCreditsQuery,
   useGetSimilarMoviesQuery,
   useSearchMoviesQuery,
+  useGetMovieGenresQuery,
+  useDiscoverMoviesQuery,
 } = tmdbApi

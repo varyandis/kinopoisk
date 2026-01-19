@@ -1,10 +1,10 @@
 import { ROUTES } from '@/app/App'
-import type { ThemeMode } from '@/app/theme'
 import tmdbLogo from '@/shared/assets/images/tmdb-logo.svg'
 import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 import { Button, Layout, Menu, type MenuProps } from 'antd'
 import { NavLink, useLocation, useNavigate } from 'react-router'
 import s from './LayoutHeader.module.css'
+import type { ThemeMode } from '@/app/providers/theme/types/types'
 
 type MenuClick = MenuProps['onClick']
 

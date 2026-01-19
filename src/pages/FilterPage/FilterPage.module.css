@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.divider {
+  flex: 1 1 auto;     
+  min-width: 0;       
+}

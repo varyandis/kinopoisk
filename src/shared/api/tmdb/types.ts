@@ -24,3 +24,13 @@ export type MovieDetailsResponse = {
 }
 
 export type MovieCastType = { name: string; character: string; profile_path: string; id: number }
+
+export type MovieGenres = { id: number; name: string }
+
+export type DiscoverMoviesArgs = {
+  page: number
+  sort: string
+  min: number
+  max: number
+  with_genres?: string
+}
