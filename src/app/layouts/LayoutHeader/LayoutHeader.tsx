@@ -32,7 +32,9 @@ export const LayoutHeader = ({ setThemeMode, theme }: Props) => {
   const selectedKey = pathname.startsWith('/categories/') ? '/categories/popular' : pathname
 
   const onClick: MenuClick = (e) => {
-    navigate(e.key)
+    const nextPath = e.key
+    if (location.pathname === nextPath) return
+    navigate(nextPath)
   }
 
   const nextTheme = theme === 'light' ? 'dark' : 'light'
