@@ -1,3 +1,9 @@
+.headerWrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .header {
   padding: 0;
   height: 64px;
@@ -9,7 +15,6 @@
   margin: 0 auto;
   padding: 0 16px;
   width: 100%;
-
   height: 100%;
   display: flex;
   align-items: center;
@@ -49,4 +54,26 @@
 
 .menu :global(.ant-menu-item) {
   line-height: 36px;
+}
+
+.progressWrap {
+  height: 3px;     /* место всегда занято */
+  line-height: 0;
+}
+
+.progressWrap :global(.ant-progress) {
+  margin: 0;
+}
+
+.progressWrap :global(.ant-progress-outer) {
+  padding-right: 0;
+}
+
+.progressWrap :global(.ant-progress-bg) {
+  height: 3px !important;
+}
+
+/* скрываем без изменения высоты */
+.progressHidden {
+  opacity: 0;
 }

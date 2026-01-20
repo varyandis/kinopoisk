@@ -30,7 +30,7 @@ export const FavoritesPage = () => {
     )
 
   return (
-    <>
+    <div className={s.container}>
       <Results movies={currentItems} isLoading={false} title={'Favorites Movies'} />
       <Pagination
         showQuickJumper
@@ -41,6 +41,6 @@ export const FavoritesPage = () => {
         align="center"
         className={s.pagination}
       />
-    </>
+    </div>
   )
 }

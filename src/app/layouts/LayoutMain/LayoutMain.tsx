@@ -1,10 +1,10 @@
 import { LayoutFooter, LayoutHeader } from '@/app/layouts'
+import { getAntdTheme } from '@/app/providers/theme/lib/getAntdTheme'
+import { useThemeMode } from '@/app/providers/theme/model/useThemeMode'
 import { ConfigProvider, Layout } from 'antd'
+import { useMemo } from 'react'
 import { Outlet } from 'react-router'
 import s from './LayoutMain.module.css'
-import { useThemeMode } from '@/app/providers/theme/model/useThemeMode'
-import { getAntdTheme } from '@/app/providers/theme/lib/getAntdTheme'
-import { useMemo } from 'react'
 
 export const LayoutMain = () => {
   const { theme, setTheme } = useThemeMode()
