@@ -1,12 +1,19 @@
-import { baseQueryWithErrorToast } from '@/shared/api/tmdb/baseQueryWithErrorToast';
+import { baseQueryWithErrorToast } from '@/shared/api/tmdb/baseQueryWithErrorToast'
+import { parseWithZod } from '@/shared/api/tmdb/parseWithZod'
+import {
+  movieCreditsSchema,
+  movieDetailsSchema,
+  movieGenresSchema,
+  moviesResponseSchema,
+} from '@/shared/api/tmdb/schemas'
 import {
   type DiscoverMoviesArgs,
   type MovieCastType,
   type MovieDetailsResponse,
   type MovieGenres,
   type MoviesResponse,
-} from '@/shared/api/tmdb/types';
-import { createApi } from '@reduxjs/toolkit/query/react';
+} from '@/shared/api/tmdb/types'
+import { createApi } from '@reduxjs/toolkit/query/react'
 
 export type MovieCategoryType = 'popular' | 'top_rated' | 'upcoming' | 'now_playing'
 
@@ -22,6 +29,8 @@ export const tmdbApi = createApi({
           page: page,
         },
       }),
+      transformResponse: (raw: unknown) =>
+        parseWithZod(moviesResponseSchema, raw, 'moviesResponse'),
     }),
     getMovieById: build.query<MovieDetailsResponse, number>({
       query: (movieId: number) => ({
@@ -30,6 +39,7 @@ export const tmdbApi = createApi({
           language: 'en-US',
         },
       }),
+      transformResponse: (raw: unknown) => parseWithZod(movieDetailsSchema, raw, 'movieDetails'),
     }),
     getMovieCredits: build.query<{ cast: MovieCastType[] }, number>({
       query: (movieId: number) => ({
@@ -38,6 +48,7 @@ export const tmdbApi = createApi({
           language: 'en-US',
         },
       }),
+      transformResponse: (raw: unknown) => parseWithZod(movieCreditsSchema, raw, 'movieCredits'),
     }),
     getSimilarMovies: build.query<MoviesResponse, number>({
       query: (movieId: number) => ({
@@ -46,6 +57,8 @@ export const tmdbApi = createApi({
           language: 'en-US',
         },
       }),
+      transformResponse: (raw: unknown) =>
+        parseWithZod(moviesResponseSchema, raw, 'moviesResponse'),
     }),
     searchMovies: build.query<MoviesResponse, { query: string; page?: number }>({
       query: ({ query, page = 1 }) => ({
@@ -56,6 +69,8 @@ export const tmdbApi = createApi({
           page: page,
         },
       }),
+      transformResponse: (raw: unknown) =>
+        parseWithZod(moviesResponseSchema, raw, 'moviesResponse'),
     }),
     getMovieGenres: build.query<{ genres: MovieGenres[] }, void>({
       query: () => ({
@@ -64,6 +79,7 @@ export const tmdbApi = createApi({
           language: 'en-US',
         },
       }),
+      transformResponse: (raw: unknown) => parseWithZod(movieGenresSchema, raw, 'movieGenres'),
     }),
     discoverMovies: build.query<MoviesResponse, DiscoverMoviesArgs>({
       query: ({ page, sort, min, max, with_genres }) => ({
@@ -77,6 +93,8 @@ export const tmdbApi = createApi({
           ...(with_genres ? { with_genres } : {}),
         },
       }),
+      transformResponse: (raw: unknown) =>
+        parseWithZod(moviesResponseSchema, raw, 'moviesResponse'),
     }),
   }),
 })

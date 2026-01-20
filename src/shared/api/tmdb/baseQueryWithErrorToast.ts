@@ -1,5 +1,10 @@
 import { notifyError } from '@/shared/lib/notify/notifyError'
-import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import type {
+  BaseQueryFn,
+  FetchArgs,
+  FetchBaseQueryError,
+  QueryReturnValue,
+} from '@reduxjs/toolkit/query'
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const rawBaseQuery = fetchBaseQuery({
@@ -77,17 +82,32 @@ const normalizeError = (
   return { key: 'unknown', title: 'Unknown error' }
 }
 
-export const baseQueryWithErrorToast: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (args, api, extraOptions) => {
-  const result = await rawBaseQuery(args, api, extraOptions)
+type TMDBBaseQuery = BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError>
 
-  if (result.error) {
-    const { key, title, description } = normalizeError(result.error)
-    notifyError({ key, title, description })
+export const baseQueryWithErrorToast: TMDBBaseQuery = async (args, api, extraOptions) => {
+  try {
+    const result = await rawBaseQuery(args, api, extraOptions)
+
+    if (result.error) {
+      const { key, title, description } = normalizeError(result.error)
+      notifyError({ key, title, description })
+    }
+
+    return result
+  } catch (e) {
+    notifyError({
+      key: 'zod_validation',
+      title: 'Response validation failed',
+      description: 'API returned unexpected data format.',
+    })
+
+    const parsingError: QueryReturnValue<unknown, FetchBaseQueryError, {}> = {
+      error: {
+        status: 'PARSING_ERROR',
+        error: 'Response validation failed',
+      } as FetchBaseQueryError,
+    }
+
+    return parsingError
   }
-
-  return result
 }

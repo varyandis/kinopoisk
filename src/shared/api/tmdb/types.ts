@@ -1,4 +1,4 @@
-import type { Movie } from "@/entities/movie"
+import type { Movie } from '@/entities/movie'
 
 export type MoviesResponse = {
   page: number
@@ -23,7 +23,12 @@ export type MovieDetailsResponse = {
   vote_average: number
 }
 
-export type MovieCastType = { name: string; character: string; profile_path: string; id: number }
+export type MovieCastType = {
+  name: string
+  character: string
+  profile_path: string | null
+  id: number
+}
 
 export type MovieGenres = { id: number; name: string }
 
